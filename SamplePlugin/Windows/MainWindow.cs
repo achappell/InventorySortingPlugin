@@ -1,9 +1,12 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Dalamud.Interface.Internal;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
+using FFXIVClientStructs.FFXIV.Client.Game;
+using FFXIVClientStructs.FFXIV.Client.UI.Agent;
+using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 using ImGuiNET;
 
 namespace SamplePlugin.Windows;
@@ -42,6 +45,10 @@ public class MainWindow : Window, IDisposable
 
         ImGui.Spacing();
 
+        ImGui.Text(InventoryUtils.GearSetName());
+
+        ImGui.Spacing();
+
         ImGui.Text("Have a goat:");
         var goatImage = Plugin.TextureProvider.GetFromFile(GoatImagePath).GetWrapOrDefault();
         if (goatImage != null)
@@ -54,5 +61,15 @@ public class MainWindow : Window, IDisposable
         {
             ImGui.Text("Image not found.");
         }
+    }
+}
+
+internal sealed class InventoryUtils
+{
+    internal static unsafe String GearSetName()
+    {
+        var gearSetModule = RaptureGearsetModule.Instance();
+        var gearset = gearSetModule->GetGearset(10);
+        return gearset->GetItem(RaptureGearsetModule.GearsetItemIndex.MainHand).ToString();
     }
 }
