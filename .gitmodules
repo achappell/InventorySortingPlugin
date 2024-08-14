@@ -4,3 +4,6 @@
 [submodule "AutoRetainerAPI"]
 	path = AutoRetainerAPI
 	url = https://github.com/PunishXIV/AutoRetainerAPI
+[submodule "CriticalCommonLib"]
+	path = CriticalCommonLib
+	url = https://github.com/Critical-Impact/CriticalCommonLib

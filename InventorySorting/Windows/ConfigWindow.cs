@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace SamplePlugin.Windows;
+namespace InventorySorting.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
@@ -46,14 +46,14 @@ public class ConfigWindow : Window, IDisposable
         {
             Configuration.SomePropertyToBeSavedAndWithADefault = configValue;
             // can save immediately on change, if you don't want to provide a "Save and Close" button
-            Configuration.Save();
+            //Configuration.Save();
         }
 
         var movable = Configuration.IsConfigWindowMovable;
         if (ImGui.Checkbox("Movable Config Window", ref movable))
         {
             Configuration.IsConfigWindowMovable = movable;
-            Configuration.Save();
+            //Configuration.Save();
         }
     }
 }
