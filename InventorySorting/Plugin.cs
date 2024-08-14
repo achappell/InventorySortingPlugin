@@ -120,6 +120,7 @@ public class Plugin : HostedPlugin
             builder.RegisterType<ConfigurationManagerService>().SingleInstance().ExternallyOwned();
             builder.RegisterType<ItemRequestService>().SingleInstance().ExternallyOwned();
             builder.RegisterType<PluginLogic>().SingleInstance().ExternallyOwned();
+            builder.RegisterType<RetainerService>().SingleInstance().ExternallyOwned();
         });
 
         hostBuilder.ConfigureContainer<ContainerBuilder>(builder =>
@@ -193,6 +194,7 @@ public class Plugin : HostedPlugin
                 collection.AddHostedService(p => p.GetRequiredService<ConfigurationManagerService>());
                 collection.AddHostedService(p => p.GetRequiredService<ItemRequestService>());
                 collection.AddHostedService(p => p.GetRequiredService<PluginLogic>());
+                collection.AddHostedService(p => p.GetRequiredService<RetainerService>());
             });
     }
 

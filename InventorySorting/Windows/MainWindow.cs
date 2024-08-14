@@ -63,9 +63,14 @@ public class MainWindow : GenericWindow
 
         ImGui.Spacing();
 
-        if (ImGui.Button("Show Settings"))
+        if (ImGui.Button("What's in Bag 1"))
         {
             MediatorService.Publish(new ItemSearchRequestedMessage());
+        }
+
+        if (ImGui.Button("Open Retainer"))
+        {
+            MediatorService.Publish(new StoreOnRetainerMessage());
         }
     }
 
