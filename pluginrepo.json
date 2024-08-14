@@ -1,0 +1,24 @@
+[
+    {
+        "Author": "Seven O'nine",
+        "Name": "Inventory Sorting",
+        "Punchline": "InventorySorting",
+        "Description": "Some sorted inventory",
+        "Changelog": "doesn't do much'",
+        "IsHide": false,
+        "InternalName": "InventorySorting",
+        "AssemblyVersion": "0.0.1",
+        "TestingAssemblyVersion": "0.0.1",
+        "IsTestingExclusive": false,
+        "ApplicableVersion": "any",
+        "DalamudApiLevel": 10,
+        "TestingDalamudApiLevel": 9,
+        "DownloadCount": 0,
+        "LastUpdate": 1723087982,
+        "DownloadLinkInstall": "https://github.com/user-attachments/files/16607833/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/user-attachments/files/16607833/latest.zip",
+        "DownloadLinkTesting": "https://github.com/user-attachments/files/16607833/latest.zip",
+        "SupportsProfiles": true,
+        "IconUrl": "https://d9jhi50qo719s.cloudfront.net/dqw/samples/i56_800.png?240814051154"
+    }
+]
