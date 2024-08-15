@@ -44,5 +44,4 @@ jobs:
         with:
           name: dist
           path: |
-            InventorySorting/bin/Release/InventorySorting/latest.zip
-          compression-level: 0
+            InventorySorting/bin/Release/InventorySorting/
