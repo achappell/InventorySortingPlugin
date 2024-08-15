@@ -27,14 +27,6 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
-      - name: Update changelog
-        id: update-changelog
-        uses: release-flow/keep-a-changelog-action@v2 
-        with:
-          command: bump
-          version: prerelease
-          keep-unreleased-section: true
-          preid: beta
       - name: Restore
         run: dotnet restore -r win
       - name: Build
