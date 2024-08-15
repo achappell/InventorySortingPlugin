@@ -41,7 +41,6 @@ public class Plugin : HostedPlugin
     private readonly IPluginLog _pluginLog;
     private Service? _service;
     private IDalamudPluginInterface PluginInterface { get; set; }
-
     private const string CommandName = "/pmycommand";
 
     public readonly WindowSystem WindowSystem = new("InventorySorting");

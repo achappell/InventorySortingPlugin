@@ -41,7 +41,7 @@ namespace InventorySorting.UI
         private void UiBuilderOnOpenConfigUi()
         {
             BypassLoginStatus = true;
-            MediatorService.Publish(new OpenGenericWindowMessage(typeof(ConfigWindow)));
+            MediatorService.Publish(new OpenGenericWindowMessage(typeof(MainWindow)));
         }
 
         public bool BypassLoginStatus { get; set; }
