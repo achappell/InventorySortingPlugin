@@ -4,15 +4,6 @@ name: Build
 
 
 on:
-  workflow_dispatch:
-    inputs:
-      release_type:
-        required: true
-        type: choice
-        options:
-        - patch
-        - minor
-        - major
   push:
     branches:
       - main
@@ -41,7 +32,7 @@ jobs:
         uses: release-flow/keep-a-changelog-action@v2 
         with:
           command: bump
-          version: ${{ github.event.inputs.release-type }}
+          version: preminor
       - name: Restore
         run: dotnet restore -r win
       - name: Build
