@@ -13,6 +13,13 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
+    - name: Update changelog
+      id: update-changelog
+      uses: release-flow/keep-a-changelog-action@v2 
+      with:
+          command: bump
+          version: prerelease
+          preid: beta
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "*.zip"
