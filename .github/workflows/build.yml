@@ -5,14 +5,14 @@ name: Build
 
 on:
   workflow_dispatch:
-  inputs:
-    release_type:
-      required: true
-      type: choice
-      options:
-      - patch
-      - minor
-      - major
+    inputs:
+      release_type:
+        required: true
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
   push:
     branches:
       - main
