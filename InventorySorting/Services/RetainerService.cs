@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace InventorySorting.Services
 {
-    internal class RetainerService(MediatorService mediatorService, Configuration configuration) : IHostedService, IMediatorSubscriber, IDisposable
+    internal class RetainerService(MediatorService mediatorService) : IHostedService, IMediatorSubscriber, IDisposable
     {
         public Task StartAsync(CancellationToken cancellationToken)
         {

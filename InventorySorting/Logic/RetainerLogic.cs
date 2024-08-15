@@ -1,5 +1,6 @@
 using CriticalCommonLib;
 using Dalamud.Game.ClientState.Objects.Enums;
+using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons;
 using ECommons.DalamudServices;
@@ -21,13 +22,14 @@ namespace InventorySorting.Logic
     internal class RetainerLogic
     {
         internal static bool GenericThrottle => EzThrottler.Throttle("RetainerInfoThrottler", 100);
+        private static IPlayerCharacter? LocalPlayer = Service.ClientState.LocalPlayer;
         internal static IGameObject? GetReachableRetainerBell()
         {
             foreach (var x in Service.Objects)
             {
-                if ((x.ObjectKind == ObjectKind.Housing || x.ObjectKind == ObjectKind.EventObj) && x.Name.ToString().EqualsIgnoreCaseAny(BellName, "リテイナーベル"))
+                if ((x.ObjectKind == ObjectKind.Housing || x.ObjectKind == ObjectKind.EventObj) && x.Name.ToString().EqualsIgnoreCaseAny(BellName, "リテイナーベル") && LocalPlayer != null)
                 {
-                    if (Vector3.Distance(x.Position, Service.ClientState.LocalPlayer.Position) < GetValidInteractionDistance(x) && x.IsTargetable)
+                    if (Vector3.Distance(x.Position, LocalPlayer.Position) < GetValidInteractionDistance(x) && x.IsTargetable)
                     {
                         return x;
                     }
@@ -36,9 +38,9 @@ namespace InventorySorting.Logic
             return null;
         }
 
-        internal static string BellName
+        internal static string? BellName
         {
-            get => Service.Data.GetExcelSheet<EObjName>().GetRow(2000401).Singular.ToString();
+            get => Service.Data.GetExcelSheet<EObjName>()?.GetRow(2000401)?.Singular.ToString();
         }
 
         internal static float GetValidInteractionDistance(IGameObject bell)
@@ -60,9 +62,9 @@ namespace InventorySorting.Logic
         {
             if (Service.Condition[Dalamud.Game.ClientState.Conditions.ConditionFlag.OccupiedSummoningBell]) return true;
             var x = Service.Targets.Target;
-            if (x != null && (x.ObjectKind == ObjectKind.Housing || x.ObjectKind == ObjectKind.EventObj) && x.Name.ToString().EqualsIgnoreCaseAny(BellName, "リテイナーベル"))
+            if (x != null && (x.ObjectKind == ObjectKind.Housing || x.ObjectKind == ObjectKind.EventObj) && x.Name.ToString().EqualsIgnoreCaseAny(BellName, "リテイナーベル") && LocalPlayer != null)
             {
-                if (Vector3.Distance(x.Position, Service.ClientState.LocalPlayer.Position) < GetValidInteractionDistance(x) && x.IsTargetable)
+                if (Vector3.Distance(x.Position, LocalPlayer.Position) < GetValidInteractionDistance(x) && x.IsTargetable)
                 {
                     if (GenericThrottle && EzThrottler.Throttle("InteractWithBell", 5000))
                     {

@@ -29,13 +29,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using InventorySorting.UI;
 using Window = InventorySorting.UI.Window;
-using ECommons.Logging;
 using InventorySorting.Commands;
-using static FFXIVClientStructs.FFXIV.Client.LayoutEngine.LayoutManager;
-using static Lumina.Data.BaseFileHandle;
-using System.Windows.Forms.Design;
 using InventorySorting.Services;
-using InventorySorting.Windows;
 using InventorySorting.Host;
 using InventorySorting.Logic;
 
@@ -49,11 +44,7 @@ public class Plugin : HostedPlugin
 
     private const string CommandName = "/pmycommand";
 
-    public Configuration Configuration { get; init; }
-
     public readonly WindowSystem WindowSystem = new("InventorySorting");
-    private ConfigWindow ConfigWindow { get; init; }
-    private MainWindow MainWindow { get; init; }
 
     public Plugin(IDalamudPluginInterface pluginInterface, IPluginLog pluginLog,
             IAddonLifecycle addonLifecycle, IChatGui chatGui, IClientState clientState, ICommandManager commandManager,
@@ -205,7 +196,9 @@ public class Plugin : HostedPlugin
             Service.Log.Debug("Starting dispose of InventoryToolsPlugin");
             _service?.Dispose();
             _service = null;
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             PluginInterface = null;
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         }
     }
 

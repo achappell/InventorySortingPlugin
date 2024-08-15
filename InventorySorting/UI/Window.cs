@@ -29,6 +29,9 @@ namespace InventorySorting.UI
             {
                 Size = DefaultSize.Value;
             }
+
+            Key = name;
+            OriginalWindowName = name;
         }
 
         public override void OnOpen()

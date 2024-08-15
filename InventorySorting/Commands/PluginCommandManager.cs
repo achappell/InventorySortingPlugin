@@ -26,6 +26,7 @@ namespace InventorySorting.Commands
             Logger = logger;
             this._host = host;
             _commandManager = commandManger;
+            _pluginCommands = [];
         }
 
         private void AddCommandHandlers()

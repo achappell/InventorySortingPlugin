@@ -23,10 +23,6 @@ namespace InventorySorting.Windows;
 
 public class MainWindow : GenericWindow
 {
-    private string GoatImagePath;
-    private Plugin Plugin;
-    public Configuration Configuration { get; }
-
     public override string GenericKey => "main";
 
     public override string GenericName { get; } = "Main";
@@ -50,17 +46,10 @@ public class MainWindow : GenericWindow
             MinimumSize = new Vector2(375, 330),
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
-        Configuration = configuration;
     }
-
-    public void Dispose() { }
 
     public override void Draw()
     {
-        ImGui.Spacing();
-
-        ImGui.Text(InventoryUtils.GearSetName());
-
         ImGui.Spacing();
 
         if (ImGui.Button("What's in Bag 1"))
@@ -82,16 +71,6 @@ public class MainWindow : GenericWindow
     public override void Invalidate()
     {
         
-    }
-}
-
-internal sealed class InventoryUtils
-{
-    internal static unsafe String GearSetName()
-    {
-        var gearSetModule = RaptureGearsetModule.Instance();
-        var gearset = gearSetModule->GetGearset(10);
-        return gearset->GetItem(RaptureGearsetModule.GearsetItemIndex.MainHand).ToString();
     }
 }
 

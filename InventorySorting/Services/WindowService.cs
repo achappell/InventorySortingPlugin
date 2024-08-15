@@ -27,7 +27,7 @@ namespace InventorySorting.Services
 
         public WindowService(ILogger<WindowService> logger, MediatorService mediatorService, IEnumerable<Window> windows, Func<Type, GenericWindow> genericWindowFactory, Configuration configuration, IWindowSystemFactory windowSystemFactory) : base(logger, mediatorService)
         {
-            _windowSystem = windowSystemFactory.Create("AllaganTools");
+            _windowSystem = windowSystemFactory.Create("InventorySorting");
             _windows = windows.ToDictionary(c => c.GetType(), c => c);
             _genericWindowFactory = genericWindowFactory;
             _configuration = configuration;
@@ -53,7 +53,6 @@ namespace InventorySorting.Services
         private List<IWindow> _allWindows = new();
         private ConcurrentDictionary<Type, IWindow> _genericWindows = new();
 
-        private MethodInfo? _openWindowMethod;
         private readonly Dictionary<Type, Window> _windows;
 
 
@@ -80,7 +79,7 @@ namespace InventorySorting.Services
                     }
                     catch (Exception e)
                     {
-                        Logger.LogError("Could not load saved window. Perhaps it was removed.");
+                        Logger.LogError("Could not load saved window. Perhaps it was removed. " + e.Message);
                     }
                 }
             }
